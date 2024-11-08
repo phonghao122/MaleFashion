@@ -34,4 +34,5 @@ public class ProductService {
     public List<Product> getProductByStatus(String status) {
         return this.productRepository.findByStatus(status);
     }
+
 }

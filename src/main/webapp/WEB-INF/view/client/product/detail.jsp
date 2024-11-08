@@ -56,7 +56,7 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                         <div class="product__details__pic__item">
-                                            <img src="/admin/images/product/${product.image}" alt="">
+                                            <img src="/images/product/${product.image}" alt="">
                                         </div>
                                     </div>
                                 </div>

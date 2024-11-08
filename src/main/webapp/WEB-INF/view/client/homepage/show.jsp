@@ -54,7 +54,7 @@
                                 <div class="product__item ${product.status.equals('new-arrivals') ? 'new' : 'sale'}">
                                     <a href=""></a>
                                     <div class="product__item__pic set-bg"
-                                        data-setbg="/admin/images/product/${product.image}">
+                                        data-setbg="/images/product/${product.image}">
                                         <span class="label">${product.status.equals('new-arrivals') ? 'New' :
                                             'Hot'}</span>
                                         <ul class="product__hover">

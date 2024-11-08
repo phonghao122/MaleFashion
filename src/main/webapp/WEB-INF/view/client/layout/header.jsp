@@ -8,6 +8,14 @@
                     <a href="#">Sign in</a>
                     <a href="#">FAQs</a>
                 </div>
+                <div class="offcanvas__top__hover">
+                    <span>Usd <i class="arrow_carrot-down"></i></span>
+                    <ul>
+                        <li>USD</li>
+                        <li>EUR</li>
+                        <li>USD</li>
+                    </ul>
+                </div>
             </div>
             <div class="offcanvas__nav__option">
                 <a href="#" class="search-switch"><img src="/client/img/icon/search.png" alt=""></a>
@@ -34,10 +42,32 @@
                         </div>
                         <div class="col-lg-6 col-md-5">
                             <div class="header__top__right">
-                                <div class="header__top__links">
-                                    <a href="#">Sign in</a>
-                                    <a href="#">FAQs</a>
-                                </div>
+                                <c:if test="${empty pageContext.request.userPrincipal}">
+                                    <div class="header__top__links">
+                                        <a href="/login">Sign in</a>
+                                    </div>
+                                </c:if>
+
+                                <c:if test="${not empty pageContext.request.userPrincipal}">
+                                    <div class="header__top__hover">
+                                        <span>User <i class="arrow_carrot-down"></i></span>
+                                        <ul class="dropdown-menu dropdown-menu-end p-4">
+                                            <li><a class="dropdown-item" href="#">Purchase History</a></li>
+                                            <li><a class="dropdown-item" href="#">FAQs</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <form method="post" action="/logout">
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                        value="${_csrf.token}" />
+                                                    <button class="dropdown-item">Logout</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </c:if>
+
                             </div>
                         </div>
                     </div>

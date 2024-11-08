@@ -8,4 +8,8 @@ import com.TapDev.FashionShop.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findById(long id);
+
+    boolean existsByEmail(String email);
+
+    User findByEmail(String email);
 }

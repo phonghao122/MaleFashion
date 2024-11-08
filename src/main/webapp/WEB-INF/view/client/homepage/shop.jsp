@@ -236,7 +236,7 @@
                                         <div
                                             class="product__item ${product.status.equals('new-arrivals') ? 'new' : 'sale'}">
                                             <div class="product__item__pic set-bg"
-                                                data-setbg="/admin/images/product/${product.image}">
+                                                data-setbg="/images/product/${product.image}">
                                                 ${product.status.equals('new-arrivals') ? newStatus : saleStatus}
                                                 <ul class="product__hover">
                                                     <li><a href="/product/detail/${product.id}"><img

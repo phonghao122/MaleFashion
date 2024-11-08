@@ -11,7 +11,7 @@
             <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
             <meta name="author" content="Hỏi Dân IT" />
             <title>Dashboard - Male Fashion</title>
-            <link href="/admin/css/styles.css" rel="stylesheet" />
+            <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
 

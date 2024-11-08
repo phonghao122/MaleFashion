@@ -11,7 +11,7 @@
                 <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
                 <meta name="author" content="Hỏi Dân IT" />
                 <title>Create Product - Hỏi Dân IT</title>
-                <link href="/admin/css/styles.css" rel="stylesheet" />
+                <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(() => {
@@ -187,7 +187,7 @@
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                     crossorigin="anonymous"></script>
-                <script src="/admin/js/scripts.js"></script>
+                <script src="/js/scripts.js"></script>
 
             </body>
 
