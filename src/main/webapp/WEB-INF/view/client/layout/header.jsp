@@ -20,7 +20,7 @@
             <div class="offcanvas__nav__option">
                 <a href="#" class="search-switch"><img src="/client/img/icon/search.png" alt=""></a>
                 <a href="#"><img src="/client/img/icon/heart.png" alt=""></a>
-                <a href="#"><img src="/client/img/icon/cart.png" alt=""> <span>0</span></a>
+                <a href="/cart"><img src="/client/img/icon/cart.png" alt=""> <span>0</span></a>
                 <div class="price">$0.00</div>
             </div>
             <div id="mobile-menu-wrap"></div>
@@ -91,8 +91,8 @@
                     <div class="col-lg-3 col-md-3">
                         <div class="header__nav__option">
                             <a href="#" class="search-switch"><img src="/client/img/icon/search.png" alt=""></a>
-                            <a href="/cart"><img src="/client/img/icon/cart.png" alt=""> <span>0</span></a>
-                            <div class="price">$0.00</div>
+                            <a href="/cart"><img src="/client/img/icon/cart.png" alt="">
+                                <span>${sessionScope.sum}</span></a>
                         </div>
                     </div>
                 </div>

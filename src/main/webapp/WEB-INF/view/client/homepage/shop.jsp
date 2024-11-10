@@ -245,8 +245,12 @@
                                             </div>
 
                                             <div class="product__item__text">
-                                                <h6><a href="/product/detail/${product.id}">${product.name}</a></h6>
-                                                <a href="/add-to-cart" class="add-cart">+ Add To Cart</a>
+                                                <h6>${product.name}</h6>
+                                                <form method="post" action="/add-to-cart/${product.id}">
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                        value="${_csrf.token}" />
+                                                    <button class="add-cart">+ Add To Cart</button>
+                                                </form>
                                                 <div class="rating">
                                                     <i class="fa fa-star-o"></i>
                                                     <i class="fa fa-star-o"></i>

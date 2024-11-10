@@ -1,5 +1,6 @@
 package com.TapDev.FashionShop.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -15,23 +16,23 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private double totalPrice;
 
-
     @NotNull
     @NotEmpty(message = "Please enter First Name")
     private String firstName;
 
-
     @NotNull
     @NotEmpty(message = "Please enter Last Name")
     private String lastName;
-    
+
     @NotNull
     @NotEmpty(message = "Please enter Address")
     private String address;
@@ -154,5 +155,4 @@ public class Order {
         this.orderDetails = orderDetails;
     }
 
-    
 }
