@@ -122,12 +122,12 @@
                                                     <c:forEach var="cd" items="${cartDetails}">
 
                                                         <li>0${cd.quantity} x ${cd.product.name} <span>$
-                                                                ${cd.product.price}</span></li>
+                                                                ${cd.product.price * cd.quantity}</span></li>
                                                     </c:forEach>
                                                 </ul>
                                                 <ul class="checkout__total__all">
-                                                    <li>Subtotal <span>$750.99</span></li>
-                                                    <li>Total <span>$750.99</span></li>
+                                                    <li>Subtotal <span>$ ${totalPrice}</span></li>
+                                                    <li>Total <span>$ ${totalPrice}</span></li>
                                                 </ul>
                                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                                             </div>

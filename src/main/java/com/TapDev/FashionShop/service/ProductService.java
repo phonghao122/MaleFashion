@@ -137,4 +137,39 @@ public class ProductService {
             session.setAttribute("sum", 0);
         }
     }
+
+    public void handleDeleteProductToCart(User user, long cartDetailId, HttpSession session) {
+        Cart cart = this.getCartByUser(user);
+        if (cart != null) {
+            CartDetail cartDetail = this.cartDetailRepository.findById(cartDetailId);
+            if (cartDetail != null) {
+                this.cartDetailRepository.delete(cartDetail);
+
+                if (cart.getSum() == 1) {
+                    // update session
+                    int s = cart.getSum() - 1;
+                    session.setAttribute("sum", s);
+                    this.cartRepository.delete(cart);
+                }
+                if (cart.getSum() > 1) {
+                    // update session
+                    int s = cart.getSum() - 1;
+                    session.setAttribute("sum", s);
+                    cart.setSum(s);
+                    this.cartRepository.save(cart);
+                }
+
+            }
+        }
+    }
+
+    public void handleUpdateCartBeforeCheckout(List<CartDetail> cartDetails) {
+        for (CartDetail cartDetail : cartDetails) {
+            CartDetail cd = this.cartDetailRepository.findById(cartDetail.getId());
+            if (cd != null) {
+                cd.setQuantity(cartDetail.getQuantity());
+                this.cartDetailRepository.save(cd);
+            }
+        }
+    }
 }

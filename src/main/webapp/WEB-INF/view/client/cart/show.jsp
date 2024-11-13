@@ -81,7 +81,7 @@
                                                         </td>
                                                     </tr>
                                                 </c:if>
-                                                <c:forEach var="cd" items="${cartDetails}">
+                                                <c:forEach var="cd" items="${cartDetails}" varStatus="status">
                                                     <tr>
                                                         <td class="product__cart__item">
                                                             <div class="product__cart__item__pic">
@@ -96,12 +96,25 @@
                                                         <td class="quantity__item">
                                                             <div class="quantity">
                                                                 <div class="pro-qty-2">
-                                                                    <input type="text" value="${cd.quantity}">
+                                                                    <input type="text" value="${cd.quantity}"
+                                                                        data-cart-detail-id="${cd.id}"
+                                                                        data-cart-detail-price="${cd.price}"
+                                                                        data-cart-detail-index="${status.index}">
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td class="cart__price">$ ${cd.price * cd.quantity}</td>
-                                                        <td class="cart__close"><i class="fa fa-close"></i></td>
+                                                        <td class="cart__price" data-cart-detail-id="${cd.id}">$
+                                                            ${cd.price * cd.quantity}</td>
+                                                        <td class="cart__close">
+                                                            <form action="/delete-product-to-cart/${cd.id}"
+                                                                method="post">
+                                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                                    value="${_csrf.token}" />
+                                                                <button class="btn btn-md rounded-circle">
+                                                                    <i class="fa fa-close"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
@@ -131,10 +144,35 @@
                                     <div class="cart__total">
                                         <h6>Cart total</h6>
                                         <ul>
-                                            <li>Subtotal <span>$ ${totalPrice}</span></li>
-                                            <li>Total <span>$ ${totalPrice}</span></li>
+                                            <li>Subtotal <span data-cart-total-price="${totalPrice}">$
+                                                    ${totalPrice}</span></li>
+                                            <li>Total <span data-cart-total-price="${totalPrice}">$ ${totalPrice}</span>
+                                            </li>
                                         </ul>
-                                        <a href="/check-out" class="primary-btn">Proceed to checkout</a>
+                                        <form:form action="/confirm-checkout" method="post" modelAttribute="cart">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            <div style="display: block;">
+                                                <c:forEach var="cartDetail" items="${cart.cartDetails}"
+                                                    varStatus="status">
+                                                    <div class="mb-3">
+                                                        <div class="form-group">
+                                                            <label>Id:</label>
+                                                            <form:input class="form-control" type="text"
+                                                                value="${cartDetail.id}"
+                                                                path="cartDetails[${status.index}].id" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Quantity:</label>
+                                                            <form:input class="form-control" type="text"
+                                                                value="${cartDetail.quantity}"
+                                                                path="cartDetails[${status.index}].quantity" />
+                                                        </div>
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
+                                            <button class="primary-btn">Proceed to checkout</button>
+                                        </form:form>
+
                                     </div>
                                 </div>
                             </div>

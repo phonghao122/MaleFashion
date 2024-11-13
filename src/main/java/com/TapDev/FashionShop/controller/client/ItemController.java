@@ -52,6 +52,7 @@ public class ItemController {
         }
         model.addAttribute("cartDetails", cartDetails);
         model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("cart", cart);
         return "client/cart/show";
     }
 
@@ -82,9 +83,15 @@ public class ItemController {
         }
         model.addAttribute("cartDetails", cartDetails);
         model.addAttribute("totalPrice", totalPrice);
-        session.setAttribute("totalPrice", totalPrice);
         model.addAttribute("newOrder", new Order());
         return "client/checkout/show";
+    }
+
+    @PostMapping("/confirm-checkout")
+    public String getCheckOutPage(@ModelAttribute("cart") Cart cart) {
+        List<CartDetail> cartDetails = cart == null ? new ArrayList<CartDetail>() : cart.getCartDetails();
+        this.productService.handleUpdateCartBeforeCheckout(cartDetails);
+        return "redirect:/check-out";
     }
 
     @PostMapping("/check-out")
@@ -97,5 +104,15 @@ public class ItemController {
         this.productService.handlePlaceOrder(user, order, session);
 
         return "redirect:/";
+    }
+
+    @PostMapping("/delete-product-to-cart/{id}")
+    public String postDeleteProductToCart(@PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        User user = new User();
+        long userId = (long) session.getAttribute("id");
+        user.setId(userId);
+        this.productService.handleDeleteProductToCart(user, id, session);
+        return "redirect:/cart";
     }
 }
