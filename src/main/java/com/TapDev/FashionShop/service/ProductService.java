@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.TapDev.FashionShop.domain.Cart;
@@ -12,11 +15,13 @@ import com.TapDev.FashionShop.domain.Order;
 import com.TapDev.FashionShop.domain.OrderDetail;
 import com.TapDev.FashionShop.domain.Product;
 import com.TapDev.FashionShop.domain.User;
+import com.TapDev.FashionShop.domain.dto.ProductCriteriaDTO;
 import com.TapDev.FashionShop.repository.CartDetailRepository;
 import com.TapDev.FashionShop.repository.CartRepository;
 import com.TapDev.FashionShop.repository.OrderDetailRepository;
 import com.TapDev.FashionShop.repository.OrderRepository;
 import com.TapDev.FashionShop.repository.ProductRepository;
+import com.TapDev.FashionShop.service.specification.ProductSpecs;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -43,8 +48,82 @@ public class ProductService {
         this.orderDetailRepository = orderDetailRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return this.productRepository.findAll();
+    public Page<Product> getAllProducts(Pageable pageable) {
+        return this.productRepository.findAll(pageable);
+    }
+
+    public Page<Product> getAllProductsWithSpec(Pageable pageable, ProductCriteriaDTO productCriteriaDTO) {
+        if (productCriteriaDTO.getBrand() == null
+                && productCriteriaDTO.getCategory() == null
+                && productCriteriaDTO.getColor() == null
+                && productCriteriaDTO.getPrice() == null
+                && productCriteriaDTO.getSize() == null) {
+            return this.productRepository.findAll(pageable);
+        }
+
+        Specification<Product> combinedSpec = Specification.where(null);
+
+        if (productCriteriaDTO.getCategory() != null && productCriteriaDTO.getCategory().isPresent()) {
+            Specification<Product> currentSpecs = ProductSpecs.matchCategory(productCriteriaDTO.getCategory().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+
+        if (productCriteriaDTO.getBrand() != null && productCriteriaDTO.getBrand().isPresent()) {
+            Specification<Product> currentSpecs = ProductSpecs.matchBrand(productCriteriaDTO.getBrand().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+
+        if (productCriteriaDTO.getSize() != null && productCriteriaDTO.getSize().isPresent()) {
+            Specification<Product> currentSpecs = ProductSpecs.matchSize(productCriteriaDTO.getSize().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+
+        if (productCriteriaDTO.getColor() != null && productCriteriaDTO.getColor().isPresent()) {
+            Specification<Product> currentSpecs = ProductSpecs.matchColor(productCriteriaDTO.getColor().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+
+        if (productCriteriaDTO.getPrice() != null && productCriteriaDTO.getPrice().isPresent()) {
+            Specification<Product> currentSpecs = this.buildPriceSpecification(productCriteriaDTO.getPrice().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+
+        return this.productRepository.findAll(combinedSpec, pageable);
+    }
+
+    public Specification<Product> buildPriceSpecification(List<String> price) {
+        Specification<Product> combinedSpec = Specification.where(null); // disconjunction
+        for (String p : price) {
+            double min = 0;
+            double max = 0;
+
+            // Set the appropriate min and max based on the price range string
+            switch (p) {
+                case "$0-$100":
+                    min = 1;
+                    max = 100;
+                    break;
+                case "$100-$500":
+                    min = 100;
+                    max = 500;
+                    break;
+                case "$500-$1000":
+                    min = 500;
+                    max = 1000;
+                    break;
+                case "$1000+":
+                    min = 1000;
+                    max = 200000000;
+                    break;
+            }
+
+            if (min != 0 && max != 0) {
+                Specification<Product> rangeSpec = ProductSpecs.matchMultiplePrice(min, max);
+                combinedSpec = combinedSpec.or(rangeSpec);
+            }
+        }
+
+        return combinedSpec;
     }
 
     public Product handleSaveProduct(Product product) {

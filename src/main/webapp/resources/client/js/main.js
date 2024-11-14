@@ -292,6 +292,131 @@
         });
     });
 
+    //handle filter products
+    $('#btnFilter').click(function (event) {
+        event.preventDefault();
+
+        let categoryArr = [];
+        let brandArr = [];
+        let sizeArr = [];
+        let colorArr = [];
+        let priceArr = [];
+        //category filter
+        $("#categoryFilter .form-check-input:checked").each(function () {
+            categoryArr.push($(this).val());
+        });
+
+        //brand filter
+        $("#brandFilter .form-check-input:checked").each(function () {
+            brandArr.push($(this).val());
+        });
+
+        //size filter
+        $("#sizeFilter .form-check-input:checked").each(function () {
+            sizeArr.push($(this).val());
+        });
+
+        //color filter
+        $("#colorFilter .form-check-input:checked").each(function () {
+            colorArr.push($(this).val());
+        });
+
+        //price filter
+        $("#priceFilter .form-check-input:checked").each(function () {
+            priceArr.push($(this).val());
+        });
+
+        //sort order
+        let sortValue = $('input[name="radio-sort"]:checked').val();
+
+        const currentUrl = new URL(window.location.href);
+        const searchParams = currentUrl.searchParams;
+
+        // Add or update query parameters
+        searchParams.set('page', '1');
+        searchParams.set('sort', sortValue);
+
+        //reset
+        searchParams.delete('category');
+        searchParams.delete('brand');
+        searchParams.delete('size');
+        searchParams.delete('color');
+        searchParams.delete('price');
+
+        if (categoryArr.length > 0) {
+            searchParams.set('category', categoryArr.join(','));
+        }
+
+        if (brandArr.length > 0) {
+            searchParams.set('brand', brandArr.join(','));
+        }
+
+        if (sizeArr.length > 0) {
+            searchParams.set('size', sizeArr.join(','));
+        }
+
+        if (colorArr.length > 0) {
+            searchParams.set('color', colorArr.join(','));
+        }
+
+        if (priceArr.length > 0) {
+            searchParams.set('price', priceArr.join(','));
+        }
+
+        // Update the URL and reload the page
+        window.location.href = currentUrl.toString();
+    });
+
+    //handle auto checkbox after page loading
+    // Parse the URL parameters
+    const params = new URLSearchParams(window.location.search);
+
+    // Set checkboxes for 'factory'
+    if (params.has('category')) {
+        const categories = params.get('category').split(',');
+        categories.forEach(category => {
+            $(`#categoryFilter .form-check-input[value="${category}"]`).prop('checked', true);
+        });
+    }
+
+    // Set checkboxes for 'brand'
+    if (params.has('brand')) {
+        const brands = params.get('brand').split(',');
+        brands.forEach(brand => {
+            $(`#brandFilter .form-check-input[value="${brand}"]`).prop('checked', true);
+        });
+    }
+
+    // Set checkboxes for 'size'
+    if (params.has('size')) {
+        const sizes = params.get('size').split(',');
+        sizes.forEach(size => {
+            $(`#sizeFilter .form-check-input[value="${size}"]`).prop('checked', true);
+        });
+    }
+
+    // Set checkboxes for 'color'
+    if (params.has('color')) {
+        const colors = params.get('color').split(',');
+        colors.forEach(color => {
+            $(`#colorFilter .form-check-input[value="${color}"]`).prop('checked', true);
+        });
+    }
+
+    // Set checkboxes for 'price'
+    if (params.has('price')) {
+        const prices = params.get('price').split(',');
+        prices.forEach(price => {
+            $(`#priceFilter .form-check-input[value="${price}"]`).prop('checked', true);
+        });
+    }
+
+    // Set radio buttons for 'sort'
+    if (params.has('sort')) {
+        const sort = params.get('sort');
+        $(`input[type="radio"][name="radio-sort"][value="${sort}"]`).prop('checked', true);
+    }
+
 
 
 })(jQuery);

@@ -66,24 +66,49 @@
                                 </div>
                                 <div class="shop__sidebar__accordion">
                                     <div class="accordion" id="accordionExample">
+                                        <div class="col-12">
+                                            <button class="btn border-secondary text-primary text-uppercase mb-4"
+                                                id="btnFilter">
+                                                Lọc Sản Phẩm
+                                            </button>
+                                        </div>
                                         <div class="card">
+
                                             <div class="card-heading">
                                                 <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
                                             </div>
                                             <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <div class="shop__sidebar__categories">
-                                                        <ul class="nice-scroll">
-                                                            <li><a href="#">Men (20)</a></li>
-                                                            <li><a href="#">Women (20)</a></li>
-                                                            <li><a href="#">Bags (20)</a></li>
-                                                            <li><a href="#">Clothing (20)</a></li>
-                                                            <li><a href="#">Shoes (20)</a></li>
-                                                            <li><a href="#">Accessories (20)</a></li>
-                                                            <li><a href="#">Kids (20)</a></li>
-                                                            <li><a href="#">Kids (20)</a></li>
-                                                            <li><a href="#">Kids (20)</a></li>
-                                                        </ul>
+
+                                                    <div class="shop__sidebar__categories" id="categoryFilter">
+                                                        <div class="nice-scroll form-check form-check-inline">
+                                                            <input class="form-check-input" value="MEN" type="checkbox">
+                                                            <label class="form-check-label" for="factory-1">Men</label>
+                                                        </div>
+
+                                                        <div class="nice-scroll form-check form-check-inline">
+                                                            <input class="form-check-input" value="WOMEN"
+                                                                type="checkbox">
+                                                            <label class="form-check-label"
+                                                                for="factory-1">Women</label>
+                                                        </div>
+                                                        <div class="nice-scroll form-check form-check-inline">
+                                                            <input class="form-check-input" value="BAGS"
+                                                                type="checkbox">
+                                                            <label class="form-check-label" for="factory-1">Bags</label>
+                                                        </div>
+                                                        <div class="nice-scroll form-check form-check-inline">
+                                                            <input class="form-check-input" value="CLOTHING"
+                                                                type="checkbox">
+                                                            <label class="form-check-label"
+                                                                for="factory-1">Clothing</label>
+                                                        </div>
+                                                        <div class="nice-scroll form-check form-check-inline">
+                                                            <input class="form-check-input" value="SHOES"
+                                                                type="checkbox">
+                                                            <label class="form-check-label"
+                                                                for="factory-1">Shoes</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,13 +119,33 @@
                                             </div>
                                             <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <div class="shop__sidebar__brand">
-                                                        <ul>
-                                                            <li><a href="#">Louis Vuitton</a></li>
-                                                            <li><a href="#">Chanel</a></li>
-                                                            <li><a href="#">Hermes</a></li>
-                                                            <li><a href="#">Gucci</a></li>
-                                                        </ul>
+                                                    <div class="shop__sidebar__brand" id="brandFilter">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" value="LV">
+                                                            <label class="form-check-label" for="target-1">Louis
+                                                                Vuitton</label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="CHANEL">
+                                                            <label class="form-check-label"
+                                                                for="target-1">Chanel</label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="GUCCI">
+                                                            <label class="form-check-label" for="target-1">Gucci</label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="HERMES">
+                                                            <label class="form-check-label"
+                                                                for="target-1">Hermes</label>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,15 +157,31 @@
                                             <div id="collapseThree" class="collapse show"
                                                 data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <div class="shop__sidebar__price">
-                                                        <ul>
-                                                            <li><a href="#">$0.00 - $50.00</a></li>
-                                                            <li><a href="#">$50.00 - $100.00</a></li>
-                                                            <li><a href="#">$100.00 - $150.00</a></li>
-                                                            <li><a href="#">$150.00 - $200.00</a></li>
-                                                            <li><a href="#">$200.00 - $250.00</a></li>
-                                                            <li><a href="#">250.00+</a></li>
-                                                        </ul>
+                                                    <div class="shop__sidebar__price" id="priceFilter">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="price-2"
+                                                                value="$0-$100">
+                                                            <label class="form-check-label" for="price-2">$0.00 -
+                                                                $100.00</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="price-2"
+                                                                value="$100-$500">
+                                                            <label class="form-check-label" for="price-2">$100.00 -
+                                                                $500.00</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="price-2"
+                                                                value="$500-$1000">
+                                                            <label class="form-check-label" for="price-2">$500 -
+                                                                $1000.00</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="price-2"
+                                                                value="$1000+">
+                                                            <label class="form-check-label"
+                                                                for="price-2">$1000.00+</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,31 +193,27 @@
                                             <div id="collapseFour" class="collapse show"
                                                 data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <div class="shop__sidebar__size">
-                                                        <label for="xs">xs
-                                                            <input type="radio" id="xs">
-                                                        </label>
-                                                        <label for="sm">s
-                                                            <input type="radio" id="sm">
-                                                        </label>
-                                                        <label for="md">m
-                                                            <input type="radio" id="md">
-                                                        </label>
-                                                        <label for="xl">xl
-                                                            <input type="radio" id="xl">
-                                                        </label>
-                                                        <label for="2xl">2xl
-                                                            <input type="radio" id="2xl">
-                                                        </label>
-                                                        <label for="xxl">xxl
-                                                            <input type="radio" id="xxl">
-                                                        </label>
-                                                        <label for="3xl">3xl
-                                                            <input type="radio" id="3xl">
-                                                        </label>
-                                                        <label for="4xl">4xl
-                                                            <input type="radio" id="4xl">
-                                                        </label>
+                                                    <div class="shop__sidebar__size" id="sizeFilter">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="s"
+                                                                value="S">
+                                                            <label class="form-check-label" for="s">S</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="m"
+                                                                value="M">
+                                                            <label class="form-check-label" for="m">M</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="l"
+                                                                value="L">
+                                                            <label class="form-check-label" for="l">L</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="xl"
+                                                                value="XL">
+                                                            <label class="form-check-label" for="xl">XL</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,38 +225,82 @@
                                             <div id="collapseFive" class="collapse show"
                                                 data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <div class="shop__sidebar__color">
-                                                        <label class="c-1" for="sp-1">
-                                                            <input type="radio" id="sp-1">
-                                                        </label>
-                                                        <label class="c-2" for="sp-2">
-                                                            <input type="radio" id="sp-2">
-                                                        </label>
-                                                        <label class="c-3" for="sp-3">
-                                                            <input type="radio" id="sp-3">
-                                                        </label>
-                                                        <label class="c-4" for="sp-4">
-                                                            <input type="radio" id="sp-4">
-                                                        </label>
-                                                        <label class="c-5" for="sp-5">
-                                                            <input type="radio" id="sp-5">
-                                                        </label>
-                                                        <label class="c-6" for="sp-6">
-                                                            <input type="radio" id="sp-6">
-                                                        </label>
-                                                        <label class="c-7" for="sp-7">
-                                                            <input type="radio" id="sp-7">
-                                                        </label>
-                                                        <label class="c-8" for="sp-8">
-                                                            <input type="radio" id="sp-8">
-                                                        </label>
-                                                        <label class="c-9" for="sp-9">
-                                                            <input type="radio" id="sp-9">
-                                                        </label>
+                                                    <div class="shop__sidebar__color" id="colorFilter">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="1" type="checkbox"
+                                                                id="sp-1">
+                                                            <label class="form-check-label c-1" for="sp-1"></label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="2" type="checkbox"
+                                                                id="sp-2">
+                                                            <label class="c-2 form-check-label" for="sp-2">
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="3" type="checkbox"
+                                                                id="sp-3">
+                                                            <label class="c-3 form-check-label" for="sp-3">
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="4" type="checkbox"
+                                                                id="sp-4">
+                                                            <label class="c-4 form-check-label" for="sp-4">
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="5" type="checkbox"
+                                                                id="sp-5">
+                                                            <label class="c-5 form-check-label" for="sp-5">
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="6" type="checkbox"
+                                                                id="sp-6">
+                                                            <label class="c-6 form-check-label" for="sp-6">
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="7" type="checkbox"
+                                                                id="sp-7">
+                                                            <label class="c-7 form-check-label" for="sp-7">
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="8" type="checkbox"
+                                                                id="sp-8">
+                                                            <label class="c-8 form-check-label" for="sp-8">
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" value="9" type="checkbox"
+                                                                id="sp-9">
+                                                            <label class="c-9 form-check-label" for="sp-9">
+
+                                                            </label>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -215,11 +316,21 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="shop__product__option__right">
                                             <p>Sort by Price:</p>
-                                            <select>
-                                                <option value="">Low To High</option>
-                                                <option value="">$0 - $55</option>
-                                                <option value="">$55 - $100</option>
-                                            </select>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="sort-2" value="Default"
+                                                    name="radio-sort">
+                                                <label class="form-check-label" for="sort-2">Default</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="sort-2"
+                                                    value="High-To-Low" name="radio-sort">
+                                                <label class="form-check-label" for="sort-2">High To Low</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" id="sort-2"
+                                                    value="Low-To-High" name="radio-sort">
+                                                <label class="form-check-label" for="sort-2">Low To High</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -278,11 +389,10 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="product__pagination">
-                                        <a class="active" href="#">1</a>
-                                        <a href="#">2</a>
-                                        <a href="#">3</a>
-                                        <span>...</span>
-                                        <a href="#">21</a>
+                                        <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                            <a class="${(loop.index + 1) eq currentPage ? 'active ' : ''}"
+                                                href="/shop?page=${loop.index + 1}">${loop.index + 1}</a>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
